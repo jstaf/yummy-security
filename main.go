@@ -133,7 +133,7 @@ func EntryPackages(entry Errata) map[string]string {
 	pkgs := make(map[string]string)
 	for _, pkg := range entry.Packages {
 		if strings.Contains(pkg, "centos.alt") {
-			// skip alternate kernels
+			// skip alternate kernels provided by Xen4Centos
 			continue
 		}
 		name, version := ParsePackage(pkg)
