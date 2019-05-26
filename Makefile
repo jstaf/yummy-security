@@ -1,4 +1,4 @@
-.PHONY = clean
+.PHONY = clean, rpm, local_rpm
 
 yummy-security:
 	go build
