@@ -1,4 +1,4 @@
 *.xml
+*.rpm
 yum-security.py
 yummy-security
-
