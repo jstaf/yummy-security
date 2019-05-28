@@ -14,8 +14,9 @@ docker_rpm: yummy-security.spec
 # build rpm on host machine
 rpm: yummy-security.spec
 	sudo yum-builddep -y $<
-	# skip generation of debuginfo package and automatically fetch sources
-	rpmbuild -bb --define "debug_package %{nil}" --undefine=_disable_source_fetch $<
+	spectool -g -R $<
+	# skip generation of debuginfo package
+	rpmbuild -bb --define "debug_package %{nil}" $<
 
 clean:
 	rm -f yummy-security *.rpm

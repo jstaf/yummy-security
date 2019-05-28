@@ -8,6 +8,7 @@ URL:            https://github.com/jstaf/yummy-security
 Source0:        https://github.com/jstaf/yummy-security/archive/%{version}.tar.gz
 
 BuildRequires:  golang >= 1.11.0
+BuildRequires:  rpmdevtools
 
 %description
 yummy-security is a tool designed to allow security updates of CentOS systems
