@@ -3,8 +3,9 @@
 yummy-security:
 	go build
 
-rpm:
-	rpmbuild -bb yummy-security.spec --define "_srcdir $PWD"
+rpm: yummy-security.spec
+	sudo yum-builddep $<
+	rpmbuild -bb --nodebuginfo --undefine=_disable_source_fetch $<
 	cp ~/rpmbuild/RPMS/x86_64/yummy-security*.rpm .
 
 clean:

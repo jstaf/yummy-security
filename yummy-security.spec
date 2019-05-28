@@ -5,8 +5,9 @@ Summary:        Parse CEFS errata to find packages with security updates availab
 
 License:        GPLv3
 URL:            https://github.com/jstaf/yummy-security
+Source0:        https://github.com/jstaf/yummy-security/archive/%{version}.tar.gz
 
-BuildRequires:  golang
+BuildRequires:  golang >= 1.11.0
 
 %description
 yummy-security is a tool designed to allow security updates of CentOS systems
@@ -15,8 +16,12 @@ run yummy-security to get a list of packages that should be installed to perform
 a security-only update.
 
 
+%prep
+%autosetup
+
+
 %build
-go build
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build
 
 
 %install
@@ -31,4 +36,5 @@ cp %{name}* %{buildroot}/%{_bindir}
 
 %changelog
 * Fri May 24 2019 Jeff Stafford <jeff.stafford@protonmail.com>
-- Initial release.
+- Initial test release.
+
