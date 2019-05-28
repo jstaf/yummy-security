@@ -1,5 +1,10 @@
 *.xml
 *.rpm
 *.tar.gz
+.bash*
+.cache/
+go/
+rpmbuild/
 yum-security.py
 yummy-security
+
