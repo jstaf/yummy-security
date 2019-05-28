@@ -13,7 +13,6 @@ docker_rpm: yummy-security.spec
 
 # build rpm on host machine
 rpm: yummy-security.spec
-	sudo yum-builddep -y $<
 	spectool -g -R $<
 	# skip generation of debuginfo package
 	rpmbuild -bb --define "debug_package %{nil}" $<
