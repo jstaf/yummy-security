@@ -6,9 +6,9 @@ yummy-security:
 
 # build el7 and el6 rpms in docker containers
 docker_rpm: yummy-security.spec 
-	docker run -it --rm -v $(PWD):/home/builder/yummy-security rpmbuild/centos7 \
+	docker run -it --rm -v $(PWD):/home/builder/yummy-security:Z rpmbuild/centos7 \
 	   	/home/builder/yummy-security/run-docker-build.sh
-	docker run -it --rm -v $(PWD):/home/builder/yummy-security rpmbuild/centos6 \
+	docker run -it --rm -v $(PWD):/home/builder/yummy-security:Z rpmbuild/centos6 \
 	   	/home/builder/yummy-security/run-docker-build.sh
 
 # build rpm on host machine
