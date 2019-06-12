@@ -4,12 +4,13 @@
 yummy-security:
 	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build
 
+.docker-image-c6: Dockerfile
+	docker build -t golang-rpmbuild:6 .
+
 # build el7 and el6 rpms in docker containers
-docker_rpm: yummy-security.spec 
-	docker run -it --rm -v $(PWD):/home/builder/yummy-security:Z rpmbuild/centos7 \
-	   	/home/builder/yummy-security/run-docker-build.sh
-	docker run -it --rm -v $(PWD):/home/builder/yummy-security:Z rpmbuild/centos6 \
-	   	/home/builder/yummy-security/run-docker-build.sh
+docker_rpm: yummy-security.spec .docker-image-c6
+	docker run -it --rm -v $(PWD):/root/yummy-security:Z golang-rpmbuild:6 \
+	   	/root/yummy-security/run-docker-build.sh
 
 # build rpm on host machine
 rpm: yummy-security.spec
