@@ -7,9 +7,14 @@ yummy-security:
 .docker-image-c6: Dockerfile
 	docker build -t golang-rpmbuild:6 .
 
+.docker-image-c7: Dockerfile
+	docker build -t golang-rpmbuild:7 --build-arg el_release=7 .
+
 # build el7 and el6 rpms in docker containers
-docker_rpm: yummy-security.spec .docker-image-c6
+docker_rpm: yummy-security.spec .docker-image-c6 .docker-image-c7
 	docker run -it --rm -v $(PWD):/root/yummy-security:Z golang-rpmbuild:6 \
+	   	/root/yummy-security/run-docker-build.sh
+	docker run -it --rm -v $(PWD):/root/yummy-security:Z golang-rpmbuild:7 \
 	   	/root/yummy-security/run-docker-build.sh
 
 # build rpm on host machine
