@@ -1,6 +1,7 @@
 *.xml
 *.rpm
 *.tar.gz
+.docker-image*
 .bash*
 .cache/
 go/
