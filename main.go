@@ -12,6 +12,7 @@ import (
 	"strings"
 
 	version "github.com/knqyf263/go-rpm-version"
+	flag "github.com/spf13/pflag"
 	"golang.org/x/sys/unix"
 )
 
@@ -28,7 +29,19 @@ type Errata struct {
 	Severity string   `xml:"severity,attr"`
 }
 
+const progVersion = "0.1.1"
+
 func main() {
+	getVersion := flag.BoolP("version", "v", false, "Display program version.")
+	minimal := flag.BoolP("minimal", "m", false,
+		"Print package versions for latest security errata (to allow minimal updates).")
+	flag.Parse()
+
+	if *getVersion {
+		fmt.Println("yummy-security " + progVersion)
+		os.Exit(0)
+	}
+
 	data := FetchErrata()
 
 	// filter out all interesting security errata for our OS version
@@ -71,7 +84,11 @@ func main() {
 	// now dump packages with security updates to stdout
 	var sorted []string
 	for pkg, version := range needsUpdate {
-		sorted = append(sorted, pkg+"-"+TrimRelease(version))
+		if *minimal {
+			sorted = append(sorted, pkg+"-"+TrimRelease(version))
+		} else {
+			sorted = append(sorted, pkg)
+		}
 	}
 	sort.Strings(sorted)
 	for _, pkg := range sorted {

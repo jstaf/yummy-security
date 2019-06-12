@@ -1,5 +1,5 @@
 Name:           yummy-security
-Version:        0.1.0
+Version:        0.1.1
 Release:        1%{?dist}
 Summary:        Parse CEFS errata to find packages with security updates available.
 
@@ -36,6 +36,9 @@ cp %{name}* %{buildroot}/%{_bindir}
 %attr(755, root, root) %{_bindir}/%{name}*
 
 %changelog
+* Wed Jun 12 2019 Jeff Stafford <jeff.stafford@protonmail.com>
+- Old behavior is now --minimal option.
+
 * Fri May 24 2019 Jeff Stafford <jeff.stafford@protonmail.com>
 - Initial test release.
 
