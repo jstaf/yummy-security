@@ -4,11 +4,8 @@
 yummy-security:
 	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build
 
-.docker-image-c6: Dockerfile
-	docker build -t golang-rpmbuild:6 .
-
-.docker-image-c7: Dockerfile
-	docker build -t golang-rpmbuild:7 --build-arg el_release=7 .
+.docker-image-c%: Dockerfile
+	docker build -t golang-rpmbuild:$* --build-arg EL_RELEASE=$* .
 
 # build el7 and el6 rpms in docker containers
 docker_rpm: yummy-security.spec .docker-image-c6 .docker-image-c7
