@@ -8,7 +8,8 @@ a CentOS system is to just install all available updates. In many scenarios,
 this may not be desirable. Perhaps uptime is critical and you want to update as 
 little as possible to avoid accidentally breaking things. It would be much nicer
 if we could install *only* security updates and nothing else. `yummy-security`
-is designed to make the process of performing security-only updates on CentOS.
+is designed to make the process of performing security-only updates on CentOS 
+a less painful process.
 
 ## What about yum-plugin-security and yum-cron?
 
