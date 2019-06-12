@@ -44,17 +44,14 @@ Hat provides security errata as part of your subscription to the RHEL repos.
 
 ## Installation
 
-No pre-built binaries are provided. You should build them yourself - after all,
-this is for security patching, right? 
-
-Prerequisites:
-
-* [Golang](https://golang.org/dl/)
-* [Docker](https://docs.docker.com/install/)
+No pre-built binaries are provided. You should build these yourself. To do this,
+you'll need to have [Golang](https://golang.org/dl/) and 
+[Docker](https://docs.docker.com/install/) installed. You can either build a 
+binary to copy to your systems, or a set of RPMs to install with yum:
 
 ```bash
 # build the binary
-go build
+GOOS=linux CGO_ENABLED=0 go build
 
 # build RPMs for both CentOS 6 and 7
 make docker_rpm
